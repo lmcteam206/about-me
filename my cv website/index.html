@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basel "about_me"</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            text-align: center;
+            background: black;
+            overflow-x: hidden;
+        }
+
+        /* Animated Starfield Background */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            font-size: 1.5em;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        nav a {
+            color: cyan;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        /* Container */
+        .container {
+            margin: 100px auto;
+            width: 80%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 20px cyan;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        /* Typewriter Effect */
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid cyan;
+            font-size: 1.5em;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Projects Section */
+        .projects {
+            margin: 50px auto;
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            width: 300px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px cyan;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 0 20px cyan;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        .button {
+            display: block;
+            margin: 10px auto;
+            padding: 8px 15px;
+            font-size: 1em;
+            color: white;
+            text-decoration: none;
+            border: 2px solid cyan;
+            border-radius: 8px;
+            transition: 0.3s;
+            width: 80%;
+        }
+
+        .button:hover {
+            background: cyan;
+            color: black;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            margin-top: 50px;
+            font-size: 1.2em;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        .social-icons a {
+            color: cyan;
+            margin: 0 10px;
+            font-size: 1.5em;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: white;
+            text-shadow: 0 0 10px cyan;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="stars"></canvas>
+
+    <header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>🚀 Hello, I am Basel</h1>
+        <p class="typewriter">Drifting through galaxies, coding in the void, and exploring the mysteries of the universe...</p>
+    </div>
+
+    <section id="projects" class="projects">
+        <div class="project-card">
+            <img src="project1.jpg" alt="Project 1">
+            <h2>Bankai-interpreter</h2>
+            <p>A custom Python-based interpreter that allows executing .bankai scripts with custom keywords. </p>
+
+            <a href="https://github.com/lmcteam206/Bankai-interpreter" class="button">GitHub Repo</a>
+        </div>
+        <div class="project-card">
+            <img src="project2.jpg" alt="Project 1">
+            <h2>easy-H.W.</h2>
+            <p>if you are so lazy to do your school research this is the best tool where you give it the heading only and the ai will make the word file. </p>
+
+            <a href="https://github.com/lmcteam206/easy-H.W./tree/main" class="button">GitHub Repo</a>
+        </div>
+        
+    </section>
+
+    <footer id="contact">
+        <p>Contact: lmcteam206@gmail.com</p>
+        <div class="social-icons">
+            <a href="#">🌌 Twitter</a>
+            <a href="#">🚀 GitHub</a>
+            <a href="#">🛰️ LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Starfield Animation
+        const canvas = document.getElementById("stars");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let stars = Array.from({ length: 200 }, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2,
+            speed: Math.random() * 3
+        }));
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(star => {
+                ctx.fillStyle = "white";
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+                star.y += star.speed;
+                if (star.y > canvas.height) star.y = 0;
+            });
+            requestAnimationFrame(drawStars);
+        }
+
+        drawStars();
+    </script>
+
+</body>
+</html>
